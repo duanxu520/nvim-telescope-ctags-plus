@@ -186,6 +186,15 @@ function SplitCursorCompound()
   end
 end
 
+-- 提取文件名（不带扩展名）
+local function get_filename(path)
+    -- 获取文件名（带扩展名）
+    local filename_with_ext = path:match("[^\\/]+$")
+    -- 去掉扩展名
+    return filename_with_ext:gsub("%..+$", "")
+end
+
+
 ctags_plus.jump_to_tag = function(opts)
   -- Get the word under the cursor presently
   local mod, word = SplitCursorCompound()
@@ -209,7 +218,7 @@ ctags_plus.jump_to_tag = function(opts)
       -- 3. 遍历标签查找包含特定字符串的条目
       for _, tag in ipairs(tags) do
           -- 检查标签名或文件名是否包含目标字符串（按需修改条件）
-          if string.find(tag.filename, mod) then
+          if get_filename(tag.filename) == mod then
               -- 4. 执行跳转逻辑
               vim.cmd("edit! " .. tag.filename)  -- 打开文件
 
