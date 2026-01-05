@@ -203,7 +203,7 @@ ctags_plus.jump_to_tag = function(opts)
   local tags = vim.fn.taglist(string.format("^%s$\\C", word))
   local size = #tags
   if size == 0 then
-    utils.notify("gnfisher.ctags_plus", tag_not_found_msg)
+    utils.notify("11111 gnfisher.ctags_plus", tag_not_found_msg)
     return
   end
 
@@ -233,8 +233,8 @@ ctags_plus.jump_to_tag = function(opts)
               return
           end
       end
-	  utils.notify("gnfisher.ctags_plus", tag_not_found_msg)
-	  return
+	  ---utils.notify("gnfisher.ctags_plus", tag_not_found_msg)
+	  --return
   end
 
   opts = opts or {}
